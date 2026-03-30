@@ -4,358 +4,553 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="google-site-verification" content="Jr63KBb00jhc4xdH7xSfyQZOhnFKAqRYs2sWVlUVfr8" />
-  <title>Web Development Services — Digitadri</title>
-  <meta name="description" content="Professional web development services that transform ideas into powerful digital experiences. Custom websites, web apps, and more.">
+  <title>Web Development Services | Digitadri</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #09090f;
-      --surface: #111118;
-      --border: rgba(255,255,255,0.07);
-      --text: #e8e6f0;
-      --muted: #6b6880;
-      --accent: #6c63ff;
-      --accent2: #ff6b6b;
-      --accent3: #00e5c3;
-      --glow: rgba(108,99,255,0.18);
+      --ink: #0d0d0d;
+      --paper: #f5f0e8;
+      --accent: #c94a1f;
+      --muted: #7a7060;
+      --light-rule: #ddd8cc;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Epilogue', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
       font-weight: 300;
-      line-height: 1.6;
+      line-height: 1.7;
       overflow-x: hidden;
     }
 
-    /* ── DOFOLLOW LINK MIXIN ── */
-    a.dofollow {
-      color: var(--accent);
-      text-decoration: none;
-      position: relative;
-      font-weight: 400;
-      transition: color 0.2s;
-    }
-    a.dofollow::after {
-      content: '';
-      position: absolute; left: 0; bottom: -2px;
-      width: 100%; height: 1px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-    a.dofollow:hover { color: var(--accent3); }
-    a.dofollow:hover::after { transform: scaleX(1); background: var(--accent3); }
-
-    /* ── NOISE OVERLAY ── */
+    /* ─── GRAIN OVERLAY ─── */
     body::before {
       content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.4;
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+      z-index: 999;
     }
 
-    /* ── NAV ── */
+    /* ─── NAV ─── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 22px 56px;
-      background: rgba(9,9,15,0.85);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 6vw;
+      border-bottom: 1px solid var(--light-rule);
+      position: sticky;
+      top: 0;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 100;
     }
+
     .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 20px;
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 900;
       letter-spacing: -0.02em;
-      text-decoration: none; color: var(--text);
+      color: var(--ink);
+      text-decoration: none;
     }
+
     .logo span { color: var(--accent); }
-    .nav-right { display: flex; gap: 36px; align-items: center; }
-    .nav-link {
-      font-size: 13px; color: var(--muted); text-decoration: none;
-      letter-spacing: 0.04em; transition: color 0.2s;
-    }
-    .nav-link:hover { color: var(--text); }
-    .nav-cta {
-      background: var(--accent); color: #fff;
-      padding: 10px 22px; border-radius: 6px;
-      font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600;
-      text-decoration: none; transition: opacity 0.2s, transform 0.15s;
-    }
-    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--ink); }
+
+    /* ─── HERO ─── */
     .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: flex-start;
-      padding: 160px 56px 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 88vh;
+      padding: 0 6vw;
+      align-items: center;
+      gap: 4rem;
       position: relative;
-      z-index: 1;
+      overflow: hidden;
     }
 
-    /* glow blob */
     .hero::after {
-      content: '';
-      position: absolute; top: 10%; left: -10%;
-      width: 700px; height: 700px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(108,99,255,0.14) 0%, transparent 70%);
-      pointer-events: none; z-index: -1;
-      animation: pulse 6s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.08); opacity: 0.7; }
+      content: 'WEB';
+      position: absolute;
+      right: -2vw;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--serif);
+      font-size: clamp(10rem, 22vw, 22rem);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--light-rule);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
     }
 
     .hero-tag {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.3);
-      border-radius: 100px; padding: 6px 16px;
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 36px;
-      opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.3em 0.8em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
     }
-    .hero-tag::before { content: '●'; font-size: 8px; animation: blink 1.5s infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(48px, 7vw, 108px);
-      font-weight: 800;
-      line-height: 0.95;
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 1.08;
       letter-spacing: -0.03em;
-      max-width: 820px;
-      margin-bottom: 36px;
-      opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
+      animation: fadeUp 0.7s 0.1s ease both;
     }
-    h1 .highlight {
-      background: linear-gradient(135deg, var(--accent), var(--accent3));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
     }
 
     .hero-sub {
-      font-size: 18px; color: var(--muted); max-width: 560px;
-      line-height: 1.75; margin-bottom: 56px;
-      opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+      margin-top: 1.5rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 420px;
+      animation: fadeUp 0.7s 0.2s ease both;
     }
-
-    .hero-sub a.dofollow { font-size: inherit; }
 
     .hero-actions {
-      display: flex; gap: 20px; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
     }
+
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--accent); color: #fff;
-      padding: 16px 36px; border-radius: 8px;
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
-      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 0 0 var(--glow);
+      display: inline-block;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.85em 2em;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.25s, transform 0.2s;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px var(--glow); }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 10px;
-      border: 1px solid var(--border); color: var(--text);
-      padding: 16px 36px; border-radius: 8px;
-      font-family: 'Syne', sans-serif; font-weight: 600; font-size: 15px;
-      text-decoration: none; transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--accent); background: rgba(108,99,255,0.06); }
 
-    /* hero stats */
-    .hero-stats {
-      display: flex; gap: 56px; margin-top: 80px;
-      padding-top: 56px; border-top: 1px solid var(--border);
-      opacity: 0; animation: fadeUp 0.9s 0.8s forwards;
-    }
-    .stat-item { display: flex; flex-direction: column; gap: 4px; }
-    .stat-val {
-      font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--text), var(--muted));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .stat-lbl { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
 
-    /* ── SERVICES ── */
-    .section { padding: 120px 56px; position: relative; z-index: 1; }
-    .section-tag {
-      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 18px;
+    .btn-ghost {
+      display: inline-block;
+      color: var(--ink);
+      padding: 0.85em 2em;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 1px solid var(--ink);
+      transition: background 0.25s, color 0.25s;
     }
+
+    .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+    .hero-visual {
+      position: relative;
+      animation: fadeIn 1s 0.4s ease both;
+    }
+
+    .hero-card {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -20%;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.15;
+    }
+
+    .card-stat {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .card-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      margin-bottom: 2.5rem;
+    }
+
+    .card-items {
+      list-style: none;
+      border-top: 1px solid rgba(245,240,232,0.12);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .card-items li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: rgba(245,240,232,0.8);
+    }
+
+    .card-items li::before {
+      content: '→';
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 7rem 6vw; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
     .section-title {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(32px, 4vw, 54px);
-      letter-spacing: -0.03em; line-height: 1.1;
-      margin-bottom: 20px;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 600px;
     }
-    .section-sub { color: var(--muted); font-size: 16px; max-width: 560px; line-height: 1.8; margin-bottom: 72px; }
+
+    .section-body {
+      color: var(--muted);
+      max-width: 560px;
+      margin-top: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .rule { border: none; border-top: 1px solid var(--light-rule); }
+
+    /* ─── SERVICES ─── */
+    #services { background: #fff; }
+
+    .services-intro { margin-bottom: 4rem; }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 0;
+      border: 1px solid var(--light-rule);
+    }
+
+    .service-card {
+      padding: 2.5rem;
+      border-right: 1px solid var(--light-rule);
+      border-bottom: 1px solid var(--light-rule);
+      transition: background 0.25s;
+      position: relative;
       overflow: hidden;
     }
-    .service-card {
-      background: var(--surface);
-      padding: 48px 40px;
-      transition: background 0.3s;
-      position: relative; overflow: hidden;
-    }
-    .service-card::before {
+
+    .service-card::after {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent3));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.4s ease;
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px;
+      width: 0;
+      background: var(--accent);
+      transition: width 0.35s ease;
     }
-    .service-card:hover { background: #13131c; }
-    .service-card:hover::before { transform: scaleX(1); }
 
-    .service-icon {
-      width: 48px; height: 48px; margin-bottom: 28px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(108,99,255,0.1); border-radius: 12px;
-      font-size: 22px;
-    }
-    .service-name {
-      font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700;
-      margin-bottom: 14px; letter-spacing: -0.02em;
-    }
-    .service-desc { color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .service-card:hover { background: var(--paper); }
+    .service-card:hover::after { width: 100%; }
 
-    /* ── PROCESS ── */
-    .process-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .process-grid {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
-      border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 72px;
+    .service-num {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--light-rule);
+      line-height: 1;
+      margin-bottom: 1rem;
     }
-    .process-step {
-      padding: 48px 36px;
-      border-right: 1px solid var(--border);
+
+    .service-card h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── PROCESS ─── */
+    #process { position: relative; }
+
+    .process-steps {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 2px solid var(--ink);
+    }
+
+    .step {
+      padding: 2.5rem 2rem 2.5rem 0;
+      border-right: 1px solid var(--light-rule);
       position: relative;
     }
-    .process-step:last-child { border-right: none; }
-    .step-num {
-      font-family: 'Syne', sans-serif; font-size: 64px; font-weight: 800;
-      letter-spacing: -0.05em; color: rgba(255,255,255,0.04);
-      line-height: 1; margin-bottom: 20px;
-    }
-    .step-title {
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px;
-      margin-bottom: 12px; letter-spacing: -0.02em;
-    }
-    .step-desc { color: var(--muted); font-size: 13px; line-height: 1.8; }
 
-    /* ── TECH STACK ── */
-    .tech-row {
-      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 72px;
+    .step:last-child { border-right: none; }
+
+    .step-num {
+      font-family: var(--serif);
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--light-rule);
+      line-height: 1;
     }
+
+    .step h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0.75rem 0 0.5rem;
+    }
+
+    .step p { font-size: 0.85rem; color: var(--muted); }
+
+    /* ─── TECH STACK ─── */
+    #stack { background: var(--ink); color: var(--paper); }
+
+    #stack .section-label { color: var(--accent); }
+    #stack .section-title { color: var(--paper); }
+    #stack .section-body { color: rgba(245,240,232,0.55); }
+
+    .tech-list {
+      margin-top: 3.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
     .tech-pill {
-      border: 1px solid var(--border); border-radius: 100px;
-      padding: 8px 20px; font-size: 13px; color: var(--muted);
-      background: var(--surface);
+      padding: 0.5em 1.2em;
+      border: 1px solid rgba(245,240,232,0.15);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      color: rgba(245,240,232,0.7);
       transition: border-color 0.2s, color 0.2s;
     }
-    .tech-pill:hover { border-color: var(--accent); color: var(--text); }
 
-    /* ── TESTIMONIAL ── */
-    .testimonial-band {
-      background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(0,229,195,0.05));
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      padding: 100px 56px; text-align: center; position: relative; z-index: 1;
-    }
-    .quote-mark {
-      font-family: 'Syne', sans-serif; font-size: 80px; font-weight: 800;
-      color: var(--accent); opacity: 0.3; line-height: 0.6;
-      margin-bottom: 28px; display: block;
-    }
-    blockquote {
-      font-family: 'Syne', sans-serif; font-size: clamp(20px, 2.5vw, 32px);
-      font-weight: 600; letter-spacing: -0.02em;
-      max-width: 780px; margin: 0 auto 32px; line-height: 1.4;
-    }
-    .quote-author { color: var(--muted); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
+    .tech-pill:hover { border-color: var(--accent); color: var(--paper); }
 
-    /* ── CTA SECTION ── */
-    .cta-section {
-      padding: 140px 56px;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      position: relative; z-index: 1;
+    /* ─── WHY US ─── */
+    #why {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
     }
-    .cta-section::before {
+
+    .why-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .why-stat-box {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .why-stat-box.accent-box { background: var(--accent); }
+    .why-stat-box.paper-box { background: var(--paper); color: var(--ink); border: 1px solid var(--light-rule); }
+
+    .why-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .why-label { font-size: 0.75rem; color: rgba(245,240,232,0.55); letter-spacing: 0.08em; text-transform: uppercase; }
+    .paper-box .why-label { color: var(--muted); }
+
+    .why-features { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .why-feature {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .why-feature h4 { font-family: var(--serif); font-weight: 700; margin-bottom: 0.2rem; font-size: 1rem; }
+    .why-feature p { font-size: 0.85rem; color: var(--muted); }
+
+    /* ─── CTA ─── */
+    #cta {
+      background: var(--ink);
+      color: var(--paper);
+      text-align: center;
+      padding: 8rem 6vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta::before {
       content: '';
-      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(circle, rgba(108,99,255,0.1) 0%, transparent 70%);
-      pointer-events: none;
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.06;
+      top: -200px;
+      left: -150px;
     }
-    .cta-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent3); margin-bottom: 24px; }
-    .cta-title {
-      font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 72px);
-      font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;
-      margin-bottom: 24px;
-    }
-    .cta-sub { color: var(--muted); font-size: 16px; max-width: 480px; line-height: 1.8; margin-bottom: 48px; }
 
-    /* ── FOOTER ── */
+    #cta::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.07;
+      bottom: -150px;
+      right: -100px;
+    }
+
+    #cta .section-title { color: var(--paper); max-width: 700px; margin: 0 auto 1.5rem; font-size: clamp(2rem, 4vw, 3.5rem); }
+    #cta .section-body { color: rgba(245,240,232,0.55); margin: 0 auto 3rem; max-width: 500px; }
+
+    #cta .btn-primary { background: var(--accent); }
+    #cta .btn-primary:hover { background: var(--paper); color: var(--ink); }
+    #cta .btn-ghost { border-color: rgba(245,240,232,0.3); color: var(--paper); }
+    #cta .btn-ghost:hover { background: rgba(245,240,232,0.1); }
+
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+    /* ─── FOOTER ─── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 48px 56px;
-      display: flex; justify-content: space-between; align-items: center;
-      position: relative; z-index: 1;
+      padding: 3rem 6vw;
+      border-top: 1px solid var(--light-rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
-    .foot-brand {
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px;
-      text-decoration: none; color: var(--text);
-    }
-    .foot-brand span { color: var(--accent); }
-    .foot-copy { font-size: 12px; color: var(--muted); }
-    .foot-links { display: flex; gap: 28px; }
-    .foot-links a {
-      font-size: 12px; color: var(--muted); text-decoration: none;
-      transition: color 0.2s;
-    }
-    .foot-links a:hover { color: var(--text); }
 
-    /* ── ANIMATIONS ── */
+    footer p { font-size: 0.8rem; color: var(--muted); }
+
+    /* ─── LINK STYLES ─── */
+    a.dofollow-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+      font-weight: 500;
+    }
+
+    a.dofollow-link:hover { border-bottom-color: var(--accent); }
+
+    a.nofollow-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--accent);
+      transition: opacity 0.2s;
+    }
+
+    a.nofollow-link:hover { opacity: 0.75; }
+
+    /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
-      .nav-right .nav-link { display: none; }
-      .hero { padding: 120px 24px 80px; }
-      .hero-stats { gap: 32px; flex-wrap: wrap; }
-      .section { padding: 80px 24px; }
-      .process-grid { grid-template-columns: 1fr 1fr; }
-      .testimonial-band { padding: 72px 24px; }
-      .cta-section { padding: 100px 24px; }
-      footer { flex-direction: column; gap: 20px; padding: 36px 24px; text-align: center; }
-      .foot-links { justify-content: center; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 4rem 6vw; }
+      .hero::after { display: none; }
+      #why { grid-template-columns: 1fr; }
+      .why-visual { order: -1; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+    }
+
     @media (max-width: 600px) {
-      .process-grid { grid-template-columns: 1fr; }
-      .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+      nav ul { display: none; }
+      .process-steps { grid-template-columns: 1fr; }
+      .why-visual { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -363,209 +558,239 @@
 
   <!-- NAV -->
   <nav>
-    <a href="https://digitadri.com/" class="logo" rel="dofollow">Digit<span>adri</span></a>
-    <div class="nav-right">
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#process" class="nav-link">Process</a>
-      <a href="#tech" class="nav-link">Tech Stack</a>
-      <a href="https://digitadri.com/" class="nav-cta" rel="dofollow">Get a Quote</a>
-    </div>
+    <a href="#" class="logo">Digit<span>adri</span></a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#cta">Contact</a></li>
+    </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">Web Development Services</div>
-    <h1>We Build the<br><span class="highlight">Web</span> You<br>Deserve.</h1>
-    <p class="hero-sub">
-      From lightning-fast landing pages to complex web applications,
-      our web development team
-      crafts digital experiences that convert visitors into loyal customers.
-    </p>
-    <div class="hero-actions">
-      <a href="https://digitadri.com/" class="btn-primary" rel="dofollow">
-        Start Your Project →
-      </a>
-      <a href="#services" class="btn-outline">Explore Services</a>
+    <div class="hero-text">
+      <span class="hero-tag">Service — Web Development</span>
+      <h1>We Build Websites That <em>Work Hard</em> for Your Business</h1>
+      <p class="hero-sub">
+        From pixel-perfect landing pages to complex web applications,
+        our <a href="https://digitadri.com/" class="dofollow-link" rel="dofollow">web development</a>
+        services turn your vision into a fast, scalable, revenue-driving reality.
+      </p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">Start a Project</a>
+        <a href="#services" class="btn-ghost">Explore Services</a>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-val">200+</span>
-        <span class="stat-lbl">Projects Delivered</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-val">98%</span>
-        <span class="stat-lbl">Client Satisfaction</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-val">6yrs</span>
-        <span class="stat-lbl">Industry Experience</span>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="card-stat">200+</div>
+        <p class="card-label">Projects Delivered</p>
+        <ul class="card-items">
+          <li>Custom Web Applications</li>
+          <li>E-Commerce Platforms</li>
+          <li>Corporate Websites</li>
+          <li>API & Backend Systems</li>
+          <li>Performance Optimization</li>
+        </ul>
       </div>
     </div>
   </section>
 
+  <hr class="rule" />
+
   <!-- SERVICES -->
-  <section class="section" id="services">
-    <p class="section-tag">What We Offer</p>
-    <h2 class="section-title">Full-Spectrum<br>web development</h2>
-    <p class="section-sub">
-      We cover every layer of the modern web stack. Whether you need a polished
-      front-end or a robust back-end architecture, our
-      <a href="https://digitadri.com/" class="dofollow" rel="dofollow">web development</a> services have you covered.
-    </p>
+  <section id="services">
+    <div class="services-intro">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">End-to-End Web Development Services</h2>
+      <p class="section-body">
+        We cover every layer of the stack — from strategic planning and UI/UX design through
+        development, QA, deployment, and ongoing support.
+      </p>
+    </div>
 
     <div class="services-grid">
       <div class="service-card">
-        <div class="service-icon">🖥️</div>
-        <h3 class="service-name">Custom Website Development</h3>
-        <p class="service-desc">
-          Bespoke, pixel-perfect websites built from scratch. Our
-          <a href="https://digitadri.com/" class="dofollow" rel="dofollow">web development</a>
-          process ensures your site is fast, accessible, and uniquely yours.
-        </p>
+        <div class="service-num">01</div>
+        <h3>Custom Website Design &amp; Development</h3>
+        <p>Bespoke, brand-aligned websites engineered for performance and conversion — no templates, no shortcuts.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">⚡</div>
-        <h3 class="service-name">Web App Development</h3>
-        <p class="service-desc">
-          Complex, scalable web applications with real-time features, dashboards, and
-          integrations. We specialize in full-stack
-          web development
-          using modern frameworks.
-        </p>
+        <div class="service-num">02</div>
+        <h3>E-Commerce Development</h3>
+        <p>Scalable online stores built on Shopify, WooCommerce, or fully custom stacks, optimised for high-volume sales.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">🛒</div>
-        <h3 class="service-name">E-Commerce Development</h3>
-        <p class="service-desc">
-          High-converting online stores powered by Shopify, WooCommerce, or custom
-          solutions. Our web development
-          team optimizes every step of the buyer journey.
-        </p>
+        <div class="service-num">03</div>
+        <h3>Web Application Development</h3>
+        <p>Feature-rich, complex web apps — SaaS dashboards, portals, marketplaces — built to scale with your business.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">📱</div>
-        <h3 class="service-name">Responsive & Mobile-First</h3>
-        <p class="service-desc">
-          Every website we deliver is fully responsive and mobile-first. Great
-          web development
-          means flawless experiences on every screen size and device.
-        </p>
+        <div class="service-num">04</div>
+        <h3>CMS Integration</h3>
+        <p>Headless or traditional CMS setups (WordPress, Sanity, Contentful) so your team can publish without developers.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <h3 class="service-name">CMS Integration</h3>
-        <p class="service-desc">
-          WordPress, Webflow, Sanity, Contentful — we integrate your preferred CMS so
-          your team can update content without touching code. 
-          Seamless web development with full editorial control.
-        </p>
+        <div class="service-num">05</div>
+        <h3>API &amp; Third-Party Integration</h3>
+        <p>Connect your website to CRMs, payment gateways, ERPs, and any third-party service through clean, documented APIs.</p>
       </div>
       <div class="service-card">
-        <div class="service-icon">🚀</div>
-        <h3 class="service-name">Performance & SEO Optimization</h3>
-        <p class="service-desc">
-          Speed, Core Web Vitals, and on-page SEO baked into every build.
-          Our web development
-          standards ensure Google and your users both love your site.
-        </p>
+        <div class="service-num">06</div>
+        <h3>Performance &amp; SEO Optimisation</h3>
+        <p>Core Web Vitals tuning, image optimisation, caching strategies, and technical SEO to rank higher and load faster.</p>
       </div>
     </div>
   </section>
 
   <!-- PROCESS -->
-  <section class="section process-section" id="process">
-    <p class="section-tag">How We Work</p>
-    <h2 class="section-title">Our web development Process</h2>
-    <p class="section-sub">
-      A transparent, collaborative process from discovery to deployment. No surprises — just clean,
-      delivered web development on time.
-    </p>
-    <div class="process-grid">
-      <div class="process-step">
+  <section id="process">
+    <p class="section-label">How We Work</p>
+    <h2 class="section-title">A Clear, Proven Process</h2>
+    <p class="section-body">No surprises. Our structured workflow keeps projects on time, on budget, and exactly on brief.</p>
+
+    <div class="process-steps">
+      <div class="step">
         <div class="step-num">01</div>
-        <h3 class="step-title">Discovery & Strategy</h3>
-        <p class="step-desc">We dig into your goals, audience, and competitors to shape a clear roadmap before writing a single line of code.</p>
+        <h3>Discovery &amp; Strategy</h3>
+        <p>We dig into your business goals, audience, and competition to define the right scope and approach before a single line of code is written.</p>
       </div>
-      <div class="process-step">
+      <div class="step">
         <div class="step-num">02</div>
-        <h3 class="step-title">Design & Prototype</h3>
-        <p class="step-desc">Wireframes and high-fidelity mockups reviewed with you iteratively. Your vision, refined to pixel perfection.</p>
+        <h3>Design &amp; Prototyping</h3>
+        <p>Wireframes and interactive prototypes establish structure and flow, aligning stakeholders before development begins.</p>
       </div>
-      <div class="process-step">
+      <div class="step">
         <div class="step-num">03</div>
-        <h3 class="step-title">Development & QA</h3>
-        <p class="step-desc">Clean, semantic code built with modern best practices. Rigorous QA across browsers and devices before launch.</p>
+        <h3>Development &amp; QA</h3>
+        <p>Clean, documented code with continuous testing across devices, browsers, and accessibility standards throughout the build.</p>
       </div>
-      <div class="process-step">
+      <div class="step">
         <div class="step-num">04</div>
-        <h3 class="step-title">Launch & Support</h3>
-        <p class="step-desc">Smooth deployment with post-launch monitoring. We stay with you to ensure your site performs flawlessly.</p>
+        <h3>Launch &amp; Growth</h3>
+        <p>Careful deployment, training, and ongoing support to ensure your site keeps performing long after go-live.</p>
       </div>
     </div>
   </section>
 
   <!-- TECH STACK -->
-  <section class="section" id="tech">
-    <p class="section-tag">Technology</p>
-    <h2 class="section-title">Built With the Best Stack</h2>
-    <p class="section-sub">
-      Our web development team
-      stays at the frontier of modern tooling — choosing the right technology for your specific project.
-    </p>
-    <div class="tech-row">
+  <section id="stack">
+    <p class="section-label">Technologies</p>
+    <h2 class="section-title">Built With the Right Tools for the Job</h2>
+    <p class="section-body">We are technology-agnostic and choose the stack that best fits your project's scale, budget, and long-term roadmap.</p>
+
+    <div class="tech-list">
       <span class="tech-pill">React</span>
       <span class="tech-pill">Next.js</span>
       <span class="tech-pill">Vue.js</span>
-      <span class="tech-pill">Node.js</span>
+      <span class="tech-pill">Nuxt</span>
       <span class="tech-pill">TypeScript</span>
-      <span class="tech-pill">Tailwind CSS</span>
-      <span class="tech-pill">WordPress</span>
-      <span class="tech-pill">Webflow</span>
-      <span class="tech-pill">Shopify</span>
+      <span class="tech-pill">Node.js</span>
+      <span class="tech-pill">PHP / Laravel</span>
+      <span class="tech-pill">Python / Django</span>
       <span class="tech-pill">PostgreSQL</span>
+      <span class="tech-pill">MySQL</span>
       <span class="tech-pill">MongoDB</span>
+      <span class="tech-pill">Redis</span>
       <span class="tech-pill">GraphQL</span>
+      <span class="tech-pill">REST APIs</span>
+      <span class="tech-pill">WordPress</span>
+      <span class="tech-pill">Shopify</span>
+      <span class="tech-pill">Sanity</span>
+      <span class="tech-pill">Contentful</span>
       <span class="tech-pill">AWS</span>
       <span class="tech-pill">Vercel</span>
       <span class="tech-pill">Docker</span>
-      <span class="tech-pill">Figma</span>
+      <span class="tech-pill">CI / CD</span>
     </div>
   </section>
 
-  <!-- TESTIMONIAL -->
-  <div class="testimonial-band">
-    <span class="quote-mark">"</span>
-    <blockquote>
-      Digitadri's web development team delivered a site that tripled our leads in 60 days.
-      The attention to detail, speed, and communication were second to none.
-    </blockquote>
-    <p class="quote-author">— Sarah M., CEO at Growthly Inc.</p>
-  </div>
+  <!-- WHY US -->
+  <section id="why" style="padding: 7rem 6vw;">
+    <div class="why-content">
+      <p class="section-label">Why Digitadri</p>
+      <h2 class="section-title">More Than a Dev Shop — a Growth Partner</h2>
+      <p class="section-body">We measure success by the results your website delivers, not just the code we ship.</p>
+
+      <div class="why-features">
+        <div class="why-feature">
+          <div class="why-icon">★</div>
+          <div>
+            <h4>Strategy-First Thinking</h4>
+            <p>Every decision — from architecture to copy — is tied back to your business objectives and KPIs.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-icon">↗</div>
+          <div>
+            <h4>Performance-Obsessed</h4>
+            <p>Sub-2s load times are our baseline. We optimise relentlessly because every millisecond affects conversion.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-icon">◎</div>
+          <div>
+            <h4>Transparent Communication</h4>
+            <p>Weekly updates, shared project boards, and direct access to the developers building your product.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-icon">⊕</div>
+          <div>
+            <h4>Long-Term Support</h4>
+            <p>Retainer plans that keep your site secure, fast, and evolving as your business grows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-visual">
+      <div class="why-stat-box">
+        <div class="why-num">98%</div>
+        <div class="why-label">Client retention</div>
+      </div>
+      <div class="why-stat-box accent-box">
+        <div class="why-num">8+</div>
+        <div class="why-label">Years of experience</div>
+      </div>
+      <div class="why-stat-box paper-box">
+        <div class="why-num" style="color: var(--ink);">200+</div>
+        <div class="why-label">Projects shipped</div>
+      </div>
+      <div class="why-stat-box" style="background: #1a1a1a;">
+        <div class="why-num">24h</div>
+        <div class="why-label">Average response time</div>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA -->
-  <section class="cta-section" id="contact">
-    <p class="cta-label">Ready to Build?</p>
-    <h2 class="cta-title">Let's Create Something<br>Remarkable Together</h2>
-    <p class="cta-sub">
-      Tell us about your project and our
-      web development
-      team will get back to you within 24 hours.
+  <section id="cta">
+    <p class="section-label" style="color: rgba(245,240,232,0.45);">Ready to Begin?</p>
+    <h2 class="section-title">Let's Build Something Remarkable Together</h2>
+    <p class="section-body">
+      Tell us about your project and get a no-obligation proposal from our
+      <a href="https://digitadri.com/" class="dofollow-link" style="color: #e87a5a;" rel="dofollow">web development</a> team within 48 hours.
     </p>
-    <a href="https://digitadri.com/" class="btn-primary" rel="dofollow" style="font-size:16px; padding:18px 48px;">
-      Start Your Project →
-    </a>
+    <div class="cta-actions">
+      <a href="#" class="btn-primary">Get a Free Proposal</a>
+      <a href="#" class="btn-ghost">View Our Work</a>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <a href="https://digitadri.com/" class="foot-brand" rel="dofollow">Digit<span>adri</span></a>
-    <p class="foot-copy">© 2024 Digitadri. Expert web development Services.</p>
-    <nav class="foot-links">
-      <a href="https://digitadri.com/" rel="dofollow">Home</a>
-      <a href="#services">Services</a>
-      <a href="#process">Process</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <a href="#" class="logo">Digit<span>adri</span></a>
+    <p>© 2025 Digitadri. All rights reserved.</p>
+    <p style="font-size:0.75rem; color: #aaa;">
+      <!-- Other "web development" mentions in body text are nofollow -->
+      Professional
+      <a href="#" class="nofollow-link">web development</a>
+      services.
+    </p>
   </footer>
 
 </body>
